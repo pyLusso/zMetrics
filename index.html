@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+  <!-- <script> src="data_parser.js"</script> -->
+
+  <head>
+    <meta charset="utf-8">
+    <title>Zlot Metrics</title>
+  </head>
+
+  <body>
+    <h1>Zlot Metrics</h1>
+    <h3>A real-time dashboard for tracking Zlot metrics.</h3>
+    <div id="coin_prices"></div>
+    <div id="zlot_metrics"></div>
+
+    <script>
+      fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.hegic_price)
+          document.querySelector("#coin_prices").innerHTML = "HEGIC = $" + data.hegic_price 
+                                                      + "<br> ZLOT = $" + data.zlot_price
+          document.querySelector("#zlot_metrics").innerHTML = "Total HEGIC staked on ZLOT: " + data.hegic_staked 
+                                                      + ' <br> Number of lots purchased: ' + data.lots_purchased
+        })
+    </script>
+
+    <p id="demo"></p>
+  </body>
+</html>
